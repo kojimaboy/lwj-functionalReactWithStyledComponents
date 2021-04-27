@@ -1,22 +1,38 @@
-import logo from './logo.svg';
+import styled from 'styled-components';
+import { useState } from 'react';
+import { Button } from './Button';
+
+
+const Div = styled.div`
+  background-color: gray;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const Input = styled.input`
+  width = 40vw;
+`;
 
 export const App = () => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInput = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
-    <div className="App">
+    <Div>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <Input 
+          type="text" 
+          onChange={handleInput} 
+          value={inputValue}
+        />
+        <Button inputValue={inputValue}> Add Me </Button>
+        <Button inputValue='DELETE' type='destructive'> DELETE ME! </Button>
+      </header>      
+    </Div>
   );
 }
